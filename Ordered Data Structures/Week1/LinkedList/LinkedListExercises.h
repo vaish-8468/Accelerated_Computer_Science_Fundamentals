@@ -87,6 +87,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
   // Please implement this function according to the description
   // above and in the instructions PDF.
   Node *New_Node=new Node(newData);
+
   if(size_==0){
     head_=New_Node;
     tail_=New_Node;
@@ -103,7 +104,7 @@ void LinkedList<T>::insertOrdered(const T& newData) {
 
     while(current!=nullptr){
       if(current->data<=newData){
-        if(nullptr!=current->next){
+        if(current->next!=nullptr){
           prev=current;
           current=current->next;
         }
@@ -265,23 +266,23 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
     T right_front=right.front();
     if(left_front<=right_front){
       merged.pushBack(left_front);
-      left.popBack();
+      left.popFront();
     }
     else{
       merged.pushBack(right_front);
-      right.popBack();
+      right.popFront();
     }
   }
     if(left.empty()){
       while(right.empty()==false){
         merged.pushBack(right.front());
-        right.popBack();
+        right.popFront();
     }
   }
   if(right.empty()){
       while(left.empty()==false){
         merged.pushBack(left.front());
-        left.popBack();
+        left.popFront();
     }
   }
 
