@@ -35,13 +35,13 @@ class Pair{
     Pair(int, int);
 };
 
-class sumPair : public Pair {
+class sumPair: public Pair {
   public:
     int sum;
     sumPair(int,int);
   };
   
-sumPair::sumPair(int a ,int b) : Pair( a,b){
+sumPair::sumPair(int a ,int b) : Pair( a, b){
   sum=(a+b);
 }
 
