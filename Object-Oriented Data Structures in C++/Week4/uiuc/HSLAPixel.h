@@ -18,6 +18,9 @@ namespace uiuc {
   double s;
   double l;
   double a;
+  HSLAPixel();
+  HSLAPixel(double hue,double saturation, double luminance, double alpha);
+  ~HSLAPixel();
   
   };
   

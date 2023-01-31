@@ -71,13 +71,14 @@ PNG createSpotlight(PNG image, int centerX, int centerY) {
 
   for(unsigned x=0; x<image.width(); x++) {
     for(unsigned y=0; y<image.height(); y++) {
+
       HSLAPixel &pixel = image.getPixel(x,y);
       double get_original_luminance = pixel.l;
 
-      double euclidean_dis=sqrt(pow(x-centerX,2) + pow(y-centerY,2));
+      double euclidean_dis=(sqrt(pow(x-centerX,2) + pow(y-centerY,2)));
 
-      if(euclidean_dis>=160){
-        euclidean_dis=160;
+      if(euclidean_dis>=160.0){
+        euclidean_dis=160.0;
       }
 
       double luminance = euclidean_dis*luminance_degrade;
@@ -106,24 +107,38 @@ PNG createSpotlight(PNG image, int centerX, int centerY) {
  * @return The illinify'd image.
 **/
 PNG illinify(PNG image) {
- for (unsigned x=0;x<image.width();x++)
-{
-  for (unsigned y=0;y<image.height();y++){
-    HSLAPixel &pixel =image.getPixel(x,y);
-    double curr_hue=pixel.h;
-    double orange=11.0;
-    double blue=216.0;
-    double dist_with_orange=min(abs(curr_hue-orange), abs(360.0+orange-curr_hue));
-    double dist_with_blue=min(abs(curr_hue-blue), abs(360.0+blue-curr_hue));
 
-    if(dist_with_blue>dist_with_orange){
-      pixel.h=dist_with_orange;
+for (unsigned x = 0; x < image.width(); x++) {
+    for (unsigned y = 0; y < image.height(); y++) {
+      
+      HSLAPixel & pixel = image.getPixel(x, y);
+
+      double curr_hue = pixel.h;
+      double orange = 11.0;
+      double blue = 216.0;
+      
+      
+      double dist_to_orange = min( abs( curr_hue - orange ), abs( 360.0+orange-curr_hue ) );
+      double dist_to_blue = min( abs( curr_hue - blue ), abs( 360.0+blue-curr_hue ) );
+      
+      
+      if( dist_to_orange < dist_to_blue )
+      {
+        pixel.h = orange;
+      }
+      else
+      {
+        pixel.h = blue;
+      }
+    
+      
     }
-    else{
-      pixel.h=dist_with_blue;
-    }
+
+    
   }
-}
+
+
+
   return image;
 }
  

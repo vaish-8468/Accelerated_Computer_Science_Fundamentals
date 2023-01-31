@@ -12,4 +12,23 @@
 using namespace std;
 
 namespace uiuc {
+     HSLAPixel::HSLAPixel():HSLAPixel(0.0, 0.0, 0.0, 0.0)
+    {
+        
+    }
+    
+    // constructor with parameters hue, saturation, luminance, alpha
+    HSLAPixel::HSLAPixel(double h_val, double s_val, double l_val, double a_val)
+    {
+        h = h_val;
+        s = s_val;
+        l = l_val;
+        a = a_val;
+    }
+        
+
+    HSLAPixel::~HSLAPixel()
+    {
+        
+    }
 }

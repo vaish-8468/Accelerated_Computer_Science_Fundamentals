@@ -87,6 +87,7 @@
 // tree is edited in-place by reference.
 static void treeFactory(GenericTree<int>& tree) {
   tree.clear();
+  GenericTree<int>::TreeNode* root_node = tree.getRootPtr();
   tree.createRoot(4);
   auto left_ = tree.getRootPtr()->addChild(8);
   auto right_ = tree.getRootPtr()->addChild(15);
@@ -104,6 +105,7 @@ static void treeFactory(GenericTree<int>& tree) {
   // when you print it out. The main() function runs that test for you.
 
   // ...
+  return;
 
 }
 
@@ -328,10 +330,10 @@ std::vector<T> traverseLevels(GenericTree<T>& tree) {
   childPtr=rootNodePtr->childrenPtrs;
   while(childPtr.size()!=0){
     next_level_children_ptr.clear();
-    for( size_t i=0;i<childPtr.size();i++){
+    for( std::size_t i=0;i<childPtr.size();i++){
       T data= childPtr[i]->data;
       results.push_back(data);
-      for(size_t j=0;j<childPtr[i]->childrenPtrs.size();i++){
+      for(std::size_t j=0;j<childPtr[i]->childrenPtrs.size();j++){
         next_level_children_ptr.push_back(childPtr[i]->childrenPtrs[j]);
       }
     }
@@ -339,6 +341,8 @@ std::vector<T> traverseLevels(GenericTree<T>& tree) {
     childPtr=next_level_children_ptr;
     
   }
+  
+
 
   //      *****************************************************
   //                           EXERCISE 2
